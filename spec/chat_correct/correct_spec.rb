@@ -1540,4 +1540,44 @@ RSpec.describe ChatCorrect::Correct do
       expect(@cc.mistake_report).to eq([])
     end
   end
+  
+  context "example correction #078" do
+    before do
+      original_sentence = "Can you whispers because I heard a whispering once before."
+      corrected_sentence = "Can you whisper, because I heard a whisper once before"
+      @cc = ChatCorrect::Correct.new(original_sentence: original_sentence, corrected_sentence: corrected_sentence)
+    end
+    
+    it 'Annotates the corrections' do
+      expect(@cc.correct).to eq([])
+    end
+    
+    it 'Counts the number of mistakes' do
+      expect(@cc.number_of_mistakes).to eq ([])
+    end
+    
+    it 'Reports the mistakes by mistake type' do
+      expect(@cc.mistake_report).to eq ([])
+    end
+  end
+  
+  context "example correction #079" do
+    before do
+      original_sentence = "I can accessing the site now, but yesterday I couldn't accessed it."
+      corrected_sentence = "I can access the site now, but yesterday I couldn't access it."
+      @cc = ChatCorrect::Correct.new(original_sentence: original_sentence, corrected_sentence: corrected_sentence)
+    end
+    
+    it 'Annotates the corrections' do
+      expect(@cc.correct).to eq([])
+    end
+    
+    it 'Counts the number of mistakes' do
+      expect(@cc.number_of_mistakes).to eq ([])
+    end
+    
+    it 'Reports the mistakes by mistake type' do
+      expect(@cc.mistake_report).to eq ([])
+    end
+  end
 end
