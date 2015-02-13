@@ -29,11 +29,10 @@ RSpec.describe ChatCorrect::Capitalization do
     expect(cc.capitalization_error?).to eq(true)
   end
 
-  it 'should return false if missing text is added before the token' do
+  it 'should return false if text is added before the token' do
     token_a = 'They'
     token_b = 'they'
     cc = ChatCorrect::Capitalization.new(token_a: token_a, token_b: token_b)
     expect(cc.capitalization_error?).to eq(true)
   end
-end
 end

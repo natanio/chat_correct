@@ -7,7 +7,7 @@ module ChatCorrect
     end
 
     def capitalization_error?
-      word_a.downcase.eql?(word_b.downcase) && (word_a != word_b) && (cc.values[0] == word_b)
+      token_a.downcase.eql?(token_b.downcase) && (token_a != token_b)
     end
   end
 end

@@ -1888,4 +1888,38 @@ RSpec.describe ChatCorrect::Correct do
       expect { @cc.correct }.to raise_error('You must include a Corrected Sentence')
     end
   end
+
+  context "example correction #085" do
+    before do
+      original_sentence = 'They speak their own language and have a unique accent.'
+      corrected_sentence = 'One reason why is that they speak their own language and have a unique accent.'
+      @cc = ChatCorrect::Correct.new(original_sentence: original_sentence, corrected_sentence: corrected_sentence)
+    end
+
+    it 'Annotates the corrections' do
+      expect(@cc.correct).to eq('')
+      expect(@cc.correct).to eq([])
+    end
+
+    it 'Counts the number of mistakes' do
+      expect(@cc.number_of_mistakes).to eq([5])
+    end
+
+    it 'Reports the mistakes by mistake type' do
+      expect(@cc.mistake_report).to eq({
+                                       'missing_word'     => 5,
+                                       'unnecessary_word' => 0,
+                                       'spelling'         => 0,
+                                       'verb'             => 0,
+                                       'punctuation'      => 0,
+                                       'word_order'       => 0,
+                                       'capitalization'   => 0,
+                                       'duplicate_word'   => 0,
+                                       'word_choice'      => 0,
+                                       'pluralization'    => 0,
+                                       'possessive'       => 0,
+                                       'stylistic_choice' => 0
+                                      })
+    end
+  end
 end
